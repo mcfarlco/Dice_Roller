@@ -1,5 +1,6 @@
 from flask import *
 from flask_sqlalchemy import *
+from datetime import *
 from forms import *
 
 app = Flask(__name__)
@@ -8,6 +9,24 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 db = SQLAlchemy(app)
 
+# db.create_all()
+# user_1 = User(username='Testname', email='test@gmail.com', password='password')
+# user_2 = User(username='Testname2', email='test@gmail.com2', password='password')
+# db.session.add(user_1)
+# db.session.add(user_2)
+# db.sessoin.commit()
+# User.query.all()
+# User.query.filter_by(username='EXACT').all()
+# User.query.get(ID#)
+# user = User.query.filter_by(username='Testname').all()
+# user.id # prints 1
+# post_1 = Post(title="Title 1", content="Content One", user_id=user.id)
+# db.session.add(post_1)
+# db.session.commit()
+# post = Post.query.first()
+# post.user_id # prints 1
+# post.author # prints User query
+# db.drop_all()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -127,7 +146,7 @@ def settings():
     return render_template('settings.html', title='Settings')
 
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -139,7 +158,7 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
-@app.route("/register")
+@app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
