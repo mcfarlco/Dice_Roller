@@ -7,7 +7,7 @@ from roller.profiles.forms import *
 profiles = Blueprint("profiles", __name__)
 
 
-@profiles.route("/connect")
+@profiles.route("/connect", methods=["GET", "POST"])
 def connect():
     return render_template("connect.html", title="Connect")
 
