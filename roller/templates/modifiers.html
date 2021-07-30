@@ -1,4 +1,95 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Modifiers</h1>
+    <h1 class="text-center">Modifiers</h1>
+    <div class="border rounded text-center m-2" style="width: 250px; height: 500px;">
+        <h3>List of Modifiers</h3>
+        <form method="POST" action="">
+            <div class="form-group">
+                <table class="table text-center" style="table-layout: fixed;">
+                    <tr class="d-flex" style="height: 80px;">
+                        <td class="w-50">
+                            {{ form.advantage.label }}
+                        </td>
+                        <td class="w-50">
+                            <table class="table text-center table-borderless" style="table-layout: fixed;">
+                                <tr class="d-flex" style="height: 80px;">
+                                    {% for subfield in form.advantage %}
+                                        <td>
+                                            {{ subfield }}
+                                            <br>
+                                            {{ subfield.label }}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr class="d-flex" style="height: 80px;">
+                        <td class="w-50">
+                            {{ form.disadvantage.label }}
+                        </td>
+                        <td class="w-50">
+                            <table class="table text-center table-borderless" style="table-layout: fixed;">
+                                <tr class="d-flex" style="height: 80px;">
+                                    {% for subfield in form.disadvantage %}
+                                        <td>
+                                            {{ subfield }}
+                                            <br>
+                                            {{ subfield.label }}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr class="d-flex" style="height: 80px;">
+                        <td class="w-50">
+                            {{ form.explode.label }}
+                        </td>
+                        <td class="w-50">
+                            <table class="table text-center table-borderless" style="table-layout: fixed;">
+                                <tr class="d-flex" style="height: 80px;">
+                                    {% for subfield in form.explode %}
+                                        <td>
+                                            {{ subfield }}
+                                            <br>
+                                            {{ subfield.label }}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr class="d-flex" style="height: 80px;">
+                        <td class="w-50">
+                            {{ form.cheater.label }}
+                        </td>
+                        <td class="w-50">
+                            <table class="table text-center table-borderless" style="table-layout: fixed;">
+                                <tr class="d-flex" style="height: 80px;">
+                                    {% for subfield in form.cheater %}
+                                        <td>
+                                            {{ subfield }}
+                                            <br>
+                                            {{ subfield.label }}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr class="d-flex" style="height: 80px;">
+                        <td class="w-100">
+                            {{ form.submit }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+
 {% endblock content %}

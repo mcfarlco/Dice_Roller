@@ -1,4 +1,104 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Roll Dice</h1>
+<div class="border rounded text-center">
+    <h1 class="text-center">Roll</h1>
+    <div class="border rounded text-center m-2" style="width: 250px; height: 250px;">
+        <h3>Die Select Screen</h3>
+        <form method="POST" action="">
+            <div class="form-group">
+                <table class="table text-center  table-borderless" style="table-layout: fixed;">
+                    <tr>
+                        <td> {{ form.hidden_tag() }} </td>
+                    </tr>
+                    {% for subfield in form.roll %}
+                        {% if loop.first or loop.index == 5 %}
+                            <tr class="d-flex" style="height: 65px;">
+                        {% endif %}
+
+                            {% if loop.index < 5 %}
+                            <td class="w-25">
+                            {% else %}
+                            <td class="w-50">
+                            {% endif %}
+                                {{ subfield }}
+                                <br>
+                                {{ subfield.label }}
+                            </td>
+                        {% if loop.last or loop.index == 4 %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    <tr class="d-flex" style="height: 65px;">
+                        <td class="w-100">
+                            {{ form.submit }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <div class="border rounded text-center m-2 text-wrap overflow-auto" style="width: 250px; height: 250px;">
+        <h3>Roll History</h3>
+        <form method="POST" action="">
+            {% for roll in roll_history %}
+            <div>
+                {% if roll.d2 > 0 %}
+                    {{roll.d2}}d2
+                    [{% for result in roll.d2_result %}{{result.result}}{% if not loop.last %}, {% endif %}{% endfor %}]
+                    {% if roll.d2 < roll.n_die %}+{% endif %}  
+                {% endif %}
+
+                {% if roll.d3 > 0 %}
+                    {{roll.d3}}d3
+                    [{% for result in roll.d3_result %}{{result.result}}{% if not loop.last %}, {% endif %}{% endfor %}]
+                    {% if roll.d2 + roll.d3 < roll.n_die %}+{% endif %}  
+                {% endif %}
+
+                {% if roll.d4 > 0 %}
+                    {{roll.d4}}d4
+                    [{% for result in roll.d4_result %}{{result.result}}{% if not loop.last %}, {% endif %}{% endfor %}]
+                    {% if roll.d2 + roll.d3 + roll.d4 < roll.n_die %}+{% endif %}  
+                {% endif %}
+
+                {% if roll.d6 > 0 %}
+                    {{roll.d6}}d6
+                    [{% for result in roll.d6_result %}{{result.result}}{% if not loop.last %}, {% endif %}{% endfor %}]
+                    {% if roll.d2 + roll.d3 + roll.d4 + roll.d6 < roll.n_die %}+{% endif %}
+                {% endif %}
+
+                {% if roll.d8 > 0 %}
+                    {{roll.d8}}d8
+                    [{% for result in roll.d8_result %}{{result.result}}{% if not loop.last %}, {% endif %}{% endfor %}]
+                    {% if roll.d2 + roll.d3 + roll.d4 + roll.d6 + roll.d8 < roll.n_die %}+{% endif %}
+                {% endif %}
+
+                {% if roll.d10 > 0 %}
+                    {{roll.d10}}d10
+                    [{% for result in roll.d10_result %}{{result.result}}{% if not loop.last %}, {% endif %}{% endfor %}]
+                    {% if roll.d2 + roll.d3 + roll.d4 + roll.d6 + roll.d8 + roll.d10 < roll.n_die %}+{% endif %}
+                {% endif %}
+
+                {% if roll.d12 > 0 %}
+                    {{roll.d12}}d12
+                    [{% for result in roll.d12_result %}{{result.result}}{% if not loop.last %}, {% endif %}{% endfor %}]
+                    {% if roll.d2 + roll.d3 + roll.d4 + roll.d6 + roll.d8 + roll.d10 + roll.d12 < roll.n_die %}+{% endif %}
+                {% endif %}
+
+                {% if roll.d20 > 0 %}
+                    {{roll.d20}}d20
+                    [{% for result in roll.d20_result %}{{result.result}}{% if not loop.last %}, {% endif %}{% endfor %}]
+                    {% if roll.d2 + roll.d3 + roll.d4 + roll.d6 + roll.d8 + roll.d10 + roll.d12 + roll.d20 < roll.n_die %}+{% endif %} 
+                {% endif %}
+
+                {% if roll.d100 > 0 %}
+                    {{roll.d100}}d100
+                    [{% for result in roll.d100_result %}{{result.result}}{% if not loop.last %}, {% endif %}{% endfor %}]
+                {% endif %}
+
+                = {{roll.sum_die}}
+            </div>
+            <hr>
+            {% endfor %}
+        </form>
+</div>
 {% endblock content %}

@@ -3,16 +3,10 @@ from wtforms import *
 from wtforms.validators import *
 
 
-class RegistrationForm(FlaskForm):
-    username = StringField("Username", validators=[DataRequired(), Length(min=2, max=20)])
-    email = StringField("Email", validators=[DataRequired(), Email()])
-    password = PasswordField("Password", validators=[DataRequired()])
-    confirm_password = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo("password")])
-    submit = SubmitField("Sign Up")
+class ModifierForm(FlaskForm):
+    advantage = RadioField("Advantage", choices=[(1, "On"), (0, "Off")])
+    disadvantage = RadioField("Disadvantage", choices=[(1, "On"), (0, "Off")])
+    explode = RadioField("Explode", choices=[(1, "On"), (0, "Off")])
+    cheater = RadioField("Cheater", choices=[(1, "On"), (0, "Off")])
+    submit = SubmitField("Update")
 
-
-class LoginForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired(), Email()])
-    password = PasswordField("Password", validators=[DataRequired()])
-    remember = BooleanField("Remember Me")
-    submit = SubmitField("Login")
