@@ -1,39 +1,39 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="border rounded text-center">
-    <h1 class="text-center">Customize</h1>
+    <h1 class="text-center">Profile Edit</h1>
     <div class="border rounded text-center m-2" style="width: 250px; height: 200px;">
         <h3>Preview</h3>
         <form method="POST" action="">
         </form>
     </div>
-    <div class="border rounded align-middle text-center m-2" style="width: 250px; height: 50px;">
+    <div class="align-middle text-center m-2" style="width: 250px; height: 50px;">
         <table class="table text-center table-borderless" style="table-layout: fixed;">
             <tr>
                 <td>
                     <form method="POST" action="">
-                        {{ dropdown.die }}
+                        <h4>{{ name }}</h4>
                     </form>
                 </td>
             </tr>
         </table>
     </div>
     <div class="border rounded text-center m-2 text-wrap overflow-auto" style="width: 250px; height: 200px;">
-        <h3>Profile List</h3>
+        <h3>Range List</h3>
         <table class="table text-center table-borderless" style="table-layout: fixed;">
             {% for form in profile_forms %}
-                <tr class="d-flex" style="height: 35px;">
-                    <form action="" method="post">
-                        {{ form.hidden_tag() }}
-                        <td style="width: 74%;">{{ form.name }}</td>
-                        <td style="width: 24%;">{{ form.submit }}</td>
-                    </form>
-                </tr>
+            <tr class="d-flex" style="height: 35px;">
+                <form action="" method="post">
+                    {{ form.hidden_tag() }}
+                    <td style="width: 74%;">{{ form.name }}</td>
+                    <td style="width: 24%;">{{ form.submit }}</td>
+                </form>
+            </tr>
             {% endfor %}
         </table>
     </div>
     <div class="border rounded text-center m-2" style="width: 250px; height: 50px;">
-        <h4><a href="{{ url_for('profiles.profile_new', name='new') }}">Create New Profile</a></h4>
+        <h4><a href="{{ url_for('profiles.range_new', rgb_id=p_id) }}">Create New Range</a></h4>
     </div>
 </div>
 {% endblock content %}

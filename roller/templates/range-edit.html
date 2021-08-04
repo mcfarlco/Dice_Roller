@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="border rounded text-center">
+    <h1 class="text-center">Range Edit</h1>
+    <div class="border rounded text-center m-2" style="width: 250px; height: 200px;">
+        <h3>Preview</h3>
+        <form method="POST" action="">
+        </form>
+    </div>
+    <div class="justify-content-center align-middle text-center m-2" style="width: 250px; height: 50px;">
+        <table class="table text-center table-borderless" style="table-layout: fixed;">
+            <tr class="d-flex" style="height: 25px;">
+                <td style="width: 100%;">
+                    <form method="POST" action="">
+                        <h4>{{ name }}</h4>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="border rounded text-center m-2 text-wrap overflow-auto" style="width: 250px; height: 250px;">
+        <h3>Effect Options</h3>
+        <table class="table text-center table-borderless" style="table-layout: fixed;">
+            <tr class="d-flex">
+                <td style="width: 100%;">
+                    <form method="POST" action="">
+                        {{ eff_dropdown.effects }}
+                    </form>
+                </td>
+            </tr>
+            <tr class="d-flex">
+                <td>
+                    test
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock content %}

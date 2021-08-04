@@ -1,3 +1,5 @@
+from roller.profiles.forms import RGB_Profile
+from typing import SupportsIndex
 from flask import *
 from roller import db
 from roller.models import *
@@ -117,5 +119,76 @@ def reset():
     db.create_all()
     default_mods = Modifiers()
     db.session.add(default_mods)
+
+    rainbow = Rgbprofile()
+    rainbow.name = "Rainbow"
+    db.session.add(rainbow)
+    swirl = Rgbprofile()
+    swirl.name = "Swirl"
+    db.session.add(swirl)
+    waterfall = Rgbprofile()
+    waterfall.name = "Waterfall"
+    db.session.add(waterfall)
+
+    d20 = Rangeprofile()
+    d20.name = "1 - 20"
+    d20.min_r = 1
+    d20.max_r = 20
+    db.session.add(d20)
+    d6 = Rangeprofile()
+    d6.name = "1 - 6"
+    d6.min_r = 1
+    d6.max_r = 6
+    db.session.add(d6)
+
+    flash = Rgbeffect()
+    flash.name = "Flash"
+    flash.num_colors = 1
+    db.session.add(flash)
+    spin = Rgbeffect()
+    spin.name = "Spin"
+    spin.num_colors = 1
+    db.session.add(spin)
+    cycle = Rgbeffect()
+    cycle.name = "Cycle"
+    cycle.num_colors = 3
+    db.session.add(cycle)
+
+    black = Rgbcolor()
+    db.session.add(black)
+    white = Rgbcolor()
+    white.red = 255
+    white.green = 255
+    white.blue = 255
+    db.session.add(white)
+    red = Rgbcolor()
+    red.red = 255
+    db.session.add(red)
+    green = Rgbcolor()
+    green.green = 255
+    db.session.add(green)
+    blue = Rgbcolor()
+    blue.blue = 255
+    db.session.add(blue)
+
+    db.session.flush()
+    # ranges = db.session.query(Rangeprofile).filter(Rangeprofile.id == '1').all()
+    # effects = db.session.query(Rgbeffect).filter(Rgbeffect.id == '1').all()
+    # colors = db.session.query(Rgbcolor).filter(Rgbcolor.id == '1').all()
+    # effects.effect_range = [rgb_effect for range in ranges]
+
+    # sam = User()
+    # sam.name = 'sam'
+    # sam_teams = session.query(Teams).filter(Teams.name.in_(['wildcats', 'jokers'])).all()
+    # sam.teams = [team for team in sam_teams]
+    # ashley = User()
+    # ashley.name = 'ashley'
+    # ashley_teams = session.query(Teams).filter(Teams.name.in_(['wildcats', 'horseman'])).all()
+    # ashley.teams = [team for team in ashley_teams]
+    # session.add_all([sam, ashley])
+    # session.commit()
+
     db.session.commit()
+
+    
     return redirect(url_for("main.home"))

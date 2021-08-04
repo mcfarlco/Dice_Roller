@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="border rounded text-center">
+    <h1 class="text-center">New Range</h1>
+    <div class="border rounded text-center m-2" style="width: 250px; height: 500px;">
+        <div>
+            <h3>Create New Profile</h3>
+        </div>
+        <form action="" method="POST">
+            <table class="table text-center table-borderless" style="table-layout: fixed;">
+                <tr>
+                    <td>
+                        {{ form.name }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ form.hidden_tag() }}
+                        {{ form.submit }}
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+{% endblock content %}

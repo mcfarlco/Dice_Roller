@@ -146,3 +146,79 @@ class Modifiers(db.Model):
 
     def __repr__(self):
         return f"Modifiers('{self.advantage}', '{self.disadvantage}', '{self.explode}', '{self.cheater}')"
+
+
+class Rgbprofile(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False)
+    die = db.Column(db.Integer, nullable=False, default=20)
+    range_profile = db.relationship('Rangeprofile', back_populates='range_profile', lazy=True)
+
+    def __repr__(self):
+        return f"RGB_Profile('{self.id}', '{self.name}', '{self.die}', '{self.range_profile}')"
+
+
+range_effect_table = db.Table(
+    'range_effect',
+    db.Column('left_id', db.Integer, db.ForeignKey('rangeprofile.id')),
+    db.Column('right_id', db.Integer, db.ForeignKey('rgbeffect.id')))
+
+
+range_color_table = db.Table(
+    'range_color',
+    db.Column('left_id', db.Integer, db.ForeignKey('rangeprofile.id')),
+    db.Column('right_id', db.Integer, db.ForeignKey('rgbcolor.id')))
+
+
+effect_color_table = db.Table(
+    'effect_color',
+    db.Column('left_id', db.Integer, db.ForeignKey('rgbeffect.id')),
+    db.Column('right_id', db.Integer, db.ForeignKey('rgbcolor.id')))
+
+
+class Rangeprofile(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False)
+    min_r = db.Column(db.Integer, nullable=False, default=1)
+    max_r = db.Column(db.Integer, nullable=False, default=20)
+    rgb_effect = db.relationship('Rgbeffect', secondary=range_effect_table, back_populates='effect_range', lazy=True)
+    rgb_colors = db.relationship('Rgbcolor', secondary=range_color_table, back_populates='range_color', lazy=True)
+    range_profile = db.relationship("Rgbprofile", back_populates="range_profile")
+    rgb_id = db.Column(db.Integer, db.ForeignKey("rgbprofile.id"), nullable=False)
+
+    def __repr__(self):
+        return f"Range_Profile('{self.id}', '{self.name}', '{self.min_r}', '{self.max_r}', '{self.rgb_effect}', '{self.rgb_colors}')"
+
+
+class Rgbeffect(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False)
+    num_colors = db.Column(db.Integer, nullable=False, default=0)
+    animation = db.relationship('Animation', back_populates='animation', lazy=True)
+    rgb_colors = db.relationship('Rgbcolor', secondary=effect_color_table, back_populates='effect_color', lazy=True)
+    effect_range = db.relationship('Rangeprofile', secondary=range_effect_table, back_populates='rgb_effect', lazy=True)
+
+    def __repr__(self):
+        return f"RGB_Effect('{self.id}', '{self.name}', '{self.animation}', '{self.num_colors}', '{self.rgb_colors}', '{self.effect_range}')"
+
+
+class Rgbcolor(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    red = db.Column(db.Integer, nullable=False, default=0)
+    green = db.Column(db.Integer, nullable=False, default=0)
+    blue = db.Column(db.Integer, nullable=False, default=0)
+    effect_color = db.relationship('Rgbeffect', secondary=effect_color_table, back_populates='rgb_colors', lazy=True)
+    range_color = db.relationship('Rangeprofile', secondary=range_color_table, back_populates='rgb_colors', lazy=True)
+
+    def __repr__(self):
+        return f"RGB_Color('{self.id}', '{self.red}', '{self.green}', '{self.blue}', '{self.effect_color}', '{self.range_color}')"
+
+
+class Animation(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False)
+    animation = db.relationship('Rgbeffect', back_populates='animation')
+    effect_id = db.Column(db.Integer, db.ForeignKey("rgbeffect.id"), nullable=False)
+
+    def __repr__(self):
+        return f"Animation('{self.id}', '{self.name}')"
