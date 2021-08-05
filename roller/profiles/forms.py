@@ -2,39 +2,54 @@ from flask_wtf import *
 from wtforms import *
 from wtforms.validators import *
 
-class RGB_Profile(FlaskForm):
+class RGB_ProfileForm(FlaskForm):
     name = StringField("Name", default="Name", render_kw={'readonly': True})
     id = IntegerField('id')
     submit = SubmitField("Edit")
 
 
-class Roll_Profile(FlaskForm):
+class Range_ProfileForm(FlaskForm):
     name = StringField("Name", default="Name")
-    id = IntegerField('id')
+    id = IntegerField('ID')
     submit = SubmitField("Edit")
 
 
-class RGB_Edit(FlaskForm):
+class RGB_EditForm(FlaskForm):
     name = StringField("Name", default="Name")
     id = IntegerField('id')
     submit = SubmitField("Update")
 
 
-class Roll_Profile_Edit(FlaskForm):
+class Range_Profile_EditForm(FlaskForm):
     name = StringField("Name", default="Name")
     id = IntegerField('id')
+    min_r = IntegerField('Bottom of range')
+    max_r = IntegerField('Top of range')
+    effect_id = IntegerField("RGB Effect ID")
     submit = SubmitField("Update")
 
 
-class DieDropdown(FlaskForm):
+class Color_EditForm(FlaskForm):
+    color_id = IntegerField('Color ID')
+    red = IntegerField('Red')
+    green = IntegerField('Green')
+    blue = IntegerField('Blue')
+    effect_id = IntegerField("RGB Effect ID")
+    range_id = IntegerField("Range ID")
+    submit = SubmitField("✓")
+
+
+class DieDropdownForm(FlaskForm):
     die = SelectField(
         "Die", choices=[("d4"), ("d6"), ("d8"), ("d10"), ("d12"), ("d20"), ("d100")])
 
 
-class EffectDropdown(FlaskForm):
+class EffectDropdownForm(FlaskForm):
     effects = SelectField('Effect')
+    id = IntegerField('ID')
+    submit = SubmitField("Change")
 
-class NewName(FlaskForm):
+class NewNameForm(FlaskForm):
     name = StringField("Name")
     id = IntegerField('id')
     submit = SubmitField("Create")

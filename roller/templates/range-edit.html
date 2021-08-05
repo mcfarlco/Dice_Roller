@@ -19,20 +19,51 @@
         </table>
     </div>
     <div class="border rounded text-center m-2 text-wrap overflow-auto" style="width: 250px; height: 250px;">
-        <h3>Effect Options</h3>
         <table class="table text-center table-borderless" style="table-layout: fixed;">
-            <tr class="d-flex">
-                <td style="width: 100%;">
+            <form action="" method="POST">
+                <tr class="d-flex" style="height: 65px;">
+                    <td>
+                        {{ range_edit.min_r(style="width: 50%") }}
+                        <br>
+                        Range Min
+                    </td>
+                    <td>
+                        {{ range_edit.max_r(style="width: 50%") }}
+                        <br>
+                        Range Max
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ range_edit.hidden_tag() }}
+                        {{ range_edit.submit }}
+                    </td>
+                </tr>
+            </form>
+                <tr class="d-flex" style="height: 30px;">
+                    <td style="width: 100%;">
+                        <form method="POST" action="">
+                            {{ eff_dropdown.effects }}
+                        </form>
+                    </td>
+                </tr>
+                <tr class="d-flex" style="height: 25px;">
+                    <td style="width: 22%;"></td>
+                    <td style="width: 16%;">Red</td>
+                    <td style="width: 22%;">Green</td>
+                    <td style="width: 20%;">Blue</td>
+                </tr>
+                {% for form in color_forms %}
+                <tr class="d-flex" style="height: 35px;">
                     <form method="POST" action="">
-                        {{ eff_dropdown.effects }}
+                        <td class="small text-nowrap align-middle" style="width: 22%;">Color {{ loop.index }}:</td>
+                        <td>{{ form.red(style="width: 180%") }}</td>
+                        <td>{{ form.green(style="width: 180%") }}</td>
+                        <td>{{ form.blue(style="width: 180%") }}</td>
+                        <td>{{ form.hidden_tag() }}{{ form.submit }}</td>
                     </form>
-                </td>
-            </tr>
-            <tr class="d-flex">
-                <td>
-                    test
-                </td>
-            </tr>
+                </tr>
+                {% endfor %}
         </table>
     </div>
 </div>

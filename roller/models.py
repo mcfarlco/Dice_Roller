@@ -160,20 +160,20 @@ class Rgbprofile(db.Model):
 
 range_effect_table = db.Table(
     'range_effect',
-    db.Column('left_id', db.Integer, db.ForeignKey('rangeprofile.id')),
-    db.Column('right_id', db.Integer, db.ForeignKey('rgbeffect.id')))
+    db.Column('range_id', db.Integer, db.ForeignKey('rangeprofile.id')),
+    db.Column('effect_id', db.Integer, db.ForeignKey('rgbeffect.id')))
 
 
 range_color_table = db.Table(
     'range_color',
-    db.Column('left_id', db.Integer, db.ForeignKey('rangeprofile.id')),
-    db.Column('right_id', db.Integer, db.ForeignKey('rgbcolor.id')))
+    db.Column('range_id', db.Integer, db.ForeignKey('rangeprofile.id')),
+    db.Column('color_id', db.Integer, db.ForeignKey('rgbcolor.id')))
 
 
 effect_color_table = db.Table(
     'effect_color',
-    db.Column('left_id', db.Integer, db.ForeignKey('rgbeffect.id')),
-    db.Column('right_id', db.Integer, db.ForeignKey('rgbcolor.id')))
+    db.Column('effect_id', db.Integer, db.ForeignKey('rgbeffect.id')),
+    db.Column('color_id', db.Integer, db.ForeignKey('rgbcolor.id')))
 
 
 class Rangeprofile(db.Model):
