@@ -57,7 +57,6 @@ def roll():
             db.session.delete(to_delete)
             db.session.commit()
 
-        flash(f"Roll accepted for {form.roll.data}", "success")
         return redirect(url_for("main.roll"))
     return render_template("roll.html", title="Roll", form=form, roll_form=roll_form, roll_history=roll_history)
 
