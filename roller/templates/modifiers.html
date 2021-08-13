@@ -6,10 +6,10 @@
             <div class="form-group">
                 <table class="table text-center" style="table-layout: fixed;">
                     <tr class="d-flex" style="height: 80px;">
-                        <td class="w-50">
+                        <td style="width: 50%;">
                             {{ form.advantage.label }}
                         </td>
-                        <td class="w-50">
+                        <td style="width: 50%;">
                             <table class="table text-center table-borderless" style="table-layout: fixed;">
                                 <tr class="d-flex" style="height: 80px;">
                                     {% for subfield in form.advantage %}
@@ -153,7 +153,7 @@
                     </tr>
 
                     <tr class="d-flex" style="height: 80px;">
-                        <td class="w-100">
+                        <td style="width: 100%;">
                             {{ form.hidden_tag() }}
                             {{ form.submit }}
                         </td>

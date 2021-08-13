@@ -20,6 +20,7 @@ def customize():
         form.id.data = profile.id
         profile_forms.append(form)
 
+    # Check for edit or delete request for each rgb profile
     for form in profile_forms:
         if form.validate_on_submit():
             if form.submit.data:
@@ -51,6 +52,7 @@ def profile_edit():
         form.id.data = profile.id
         range_forms.append(form)
     
+    # Check for edit or delete request for each range profile
     for form in range_forms:
         if form.validate_on_submit():
             if form.submit.data:
@@ -86,12 +88,14 @@ def range_edit():
     r_id = request.args.get('id')
     rgb_id = request.args.get('rgb_id')
     profile = Rangeprofile.query.get_or_404(int(r_id))
-    cur_eff = Rgbeffect.query.order_by(Rgbeffect.name).filter(Rgbeffect.effect_range.any(id=profile.id)).first()
+    cur_eff = Rgbeffect.query.filter(Rgbeffect.effect_range.any(id=profile.id)).first()
+    range_colors = Rgbcolor.query.filter(Rgbcolor.range_color.any(id=profile.id)).all()
 
+    # Check if profile is new and has no effect
     if cur_eff is None:
         cur_eff = Rgbeffect.query.first()
 
-    range_colors = Rgbcolor.query.filter(Rgbcolor.range_color.any(id=profile.id)).all()
+    # Update form with queried information
     range_edit = Range_Profile_EditForm()
     range_edit.min_r.data = profile.min_r
     range_edit.max_r.data = profile.max_r
@@ -132,7 +136,6 @@ def range_edit():
     for form in color_forms:
         # Iterate through each color to check for update
         if form.submit.data and form.validate_on_submit():
-            # Update color on submit
             color_q = Rgbcolor.query.filter(Rgbcolor.id == form.color_id.data).first()
             color_q.red = form.red.data
             color_q.green = form.green.data

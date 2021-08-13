@@ -16,9 +16,9 @@
                         {% endif %}
 
                             {% if loop.index < 5 %}
-                            <td class="w-25">
+                            <td style="width: 25%;">
                             {% else %}
-                            <td class="w-50">
+                            <td style="width: 50%;">
                             {% endif %}
                                 {{ subfield }}
                                 <br>
@@ -29,7 +29,7 @@
                         {% endif %}
                     {% endfor %}
                     <tr class="d-flex" style="height: 65px;">
-                        <td class="w-100">
+                        <td style="width: 100%;">
                             {{ form.submit }}
                         </td>
                     </tr>

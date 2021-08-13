@@ -13,6 +13,7 @@ def modifiers():
     mods = Modifiers.query.first()
     form = ModifierForm()
 
+    # Update new modifiers
     if form.validate_on_submit():
         mods.advantage = int(form.advantage.data == 'True')
         mods.disadvantage = int(form.disadvantage.data == 'True')
@@ -22,6 +23,7 @@ def modifiers():
         
         return redirect(url_for("options.modifiers"))        
 
+    # Add current modifier status to forms
     form.advantage.default = mods.advantage
     form.disadvantage.default = mods.disadvantage
     form.explode.default = mods.explode
