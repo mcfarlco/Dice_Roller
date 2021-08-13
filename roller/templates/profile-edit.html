@@ -28,8 +28,9 @@
             <tr class="d-flex" style="height: 35px;">
                 <form action="" method="post">
                     {{ form.hidden_tag() }}
-                    <td style="width: 74%;">{{ form.name }}</td>
-                    <td style="width: 24%;">{{ form.submit }}</td>
+                    <td style="width: 40%;">{{ form.name }}</td>
+                    <td class="mx-2" style="width: 20%;">{{ form.delete }}</td>
+                    <td class="mx-2" style="width: 20%;">{{ form.submit }}</td>
                 </form>
             </tr>
             {% endfor %}

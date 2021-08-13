@@ -5,12 +5,14 @@ from wtforms.validators import *
 class RGB_ProfileForm(FlaskForm):
     name = StringField("Name", default="Name", render_kw={'readonly': True})
     id = IntegerField('id')
+    delete = SubmitField("Delete")
     submit = SubmitField("Edit")
 
 
 class Range_ProfileForm(FlaskForm):
     name = StringField("Name", default="Name")
     id = IntegerField('ID')
+    delete = SubmitField("Delete")
     submit = SubmitField("Edit")
 
 
@@ -51,5 +53,6 @@ class EffectDropdownForm(FlaskForm):
 
 class NewNameForm(FlaskForm):
     name = StringField("Name")
+    effect = SelectField('Effect')
     id = IntegerField('id')
     submit = SubmitField("Create")

@@ -41,9 +41,27 @@
                             {{ form.d100.label }}
                         </td>
                     </tr>
-                    <tr style="height: 65px;">
-                        <td>
+                    <tr class="d-flex" style="height: 65px;">
+                        <td class="col" style="width: 100%;">
                             {{ form.submit }}
+                        </td>
+                        <td class="col-6">
+                            <p>
+                                <button class="btn btn-light text-center" type="button" data-toggle="collapse"
+                                    data-target="#collapseDesc" aria-expanded="false"
+                                    aria-controls="collapseDesc">
+                                    ?
+                                </button>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr class="d-flex" style="height: 20px;">
+                        <td>
+                            <div class="collapse" id="collapseDesc">
+                                <div class="card card-body">
+                                    Enter the number of dice you wish to roll for each category above and hit roll.
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </table>

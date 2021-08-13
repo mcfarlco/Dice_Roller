@@ -129,6 +129,7 @@ def reset():
     db.session.add(swirl)
     waterfall = Rgbprofile()
     waterfall.name = "Waterfall"
+    waterfall.die = 6
     db.session.add(waterfall)
 
     # Range Profiles
@@ -185,31 +186,34 @@ def reset():
 
     # Animations
     gif_blue = Animation()
-    gif_blue.name = "gifs/blue.gif"
+    gif_blue.name = "blue.gif"
     db.session.add(gif_blue)
     gif_funnel = Animation()
-    gif_funnel.name = "gifs/funnel.gif"
+    gif_funnel.name = "funnel.gif"
+    gif_funnel.effect_id = '1'
     db.session.add(gif_funnel)
     gif_green = Animation()
-    gif_green.name = "gifs/green.gif"
+    gif_green.name = "green.gif"
     db.session.add(gif_green)
     gif_orange = Animation()
-    gif_orange.name = "gifs/orange.gif"
+    gif_orange.name = "orange.gif"
     db.session.add(gif_orange)
     gif_purple = Animation()
-    gif_purple.name = "gifs/purple.gif"
+    gif_purple.name = "purple.gif"
     db.session.add(gif_purple)
     gif_radar = Animation()
-    gif_radar.name = "gifs/radar.gif"
+    gif_radar.name = "radar.gif"
+    gif_radar.effect_id = '2'
     db.session.add(gif_radar)
     gif_rainbow = Animation()
-    gif_rainbow.name = "gifs/rainbow.gif"
+    gif_rainbow.name = "rainbow.gif"
+    gif_rainbow.effect_id = '3'
     db.session.add(gif_rainbow)
     gif_red = Animation()
-    gif_red.name = "gifs/red.gif"
+    gif_red.name = "red.gif"
     db.session.add(gif_red)
     gif_yellow = Animation()
-    gif_yellow.name = "gifs/yellow.gif"
+    gif_yellow.name = "yellow.gif"
     db.session.add(gif_yellow)
 
     db.session.commit()
@@ -221,15 +225,18 @@ def reset():
     t_black = db.session.query(Rgbcolor).filter(Rgbcolor.id == '1').all()
     t_white = db.session.query(Rgbcolor).filter(Rgbcolor.id == '2').all()
     t_tri_color = db.session.query(Rgbcolor).filter(Rgbcolor.id.in_(['3', '4', '5'])).all()
+    t_funnel = db.session.query(Animation).filter(Animation.id == '2').all()
+    t_radar = db.session.query(Animation).filter(Animation.id == '6').all()
+    t_rainbow = db.session.query(Animation).filter(Animation.id == '7').all()
     d20.rgb_effect = t_flash
     d20.rgb_colors = t_white
-    flash.rgb_colors = t_white
+    flash.animation = t_radar
     d20_2.rgb_effect = t_spin
     d20_2.rgb_colors = t_black
-    spin.rgb_colors = t_black
+    spin.animation = t_funnel
     d6.rgb_effect = t_cycle
     d6.rgb_colors = [color for color in t_tri_color]
-    cycle.rgb_colors = [color for color in t_tri_color]
+    cycle.animation = t_rainbow
     db.session.add_all([d20, d20_2, d6, flash, spin, cycle])
     db.session.commit()
     

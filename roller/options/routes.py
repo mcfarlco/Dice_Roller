@@ -31,7 +31,8 @@ def modifiers():
     return render_template("modifiers.html", title="Modifiers", form=form)
 
 
-@options.route("/settings", methods=["GET", "POST"])
-def settings():
-    return render_template("settings.html", title="Settings")
+# TO IMPLEMENT WITH IMPORT/EXPORT AND D6 WARGAME MODE
+# @options.route("/settings", methods=["GET", "POST"])
+# def settings():
+#     return render_template("settings.html", title="Settings")
 

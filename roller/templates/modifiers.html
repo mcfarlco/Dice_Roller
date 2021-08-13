@@ -2,7 +2,6 @@
 {% block content %}
     <h1 class="text-center">Modifiers</h1>
     <div class="border rounded text-center m-2" style="width: 250px; height: 500px;">
-        <h3>List of Modifiers</h3>
         <form method="POST" action="">
             <div class="form-group">
                 <table class="table text-center" style="table-layout: fixed;">
@@ -23,13 +22,31 @@
                                 </tr>
                             </table>
                         </td>
+                        <td class="" style="width: 20%;">
+                            <p>
+                                <button class="btn btn-light text-center" type="button" data-toggle="collapse"
+                                    data-target="#collapseAdvantage" aria-expanded="false"
+                                    aria-controls="collapseAdvantage">
+                                    ?
+                                </button>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr class="d-flex" style="height: 20px;">
+                        <td>
+                            <div class="collapse" id="collapseAdvantage">
+                                <div class="card card-body">
+                                    Advantage rolls each dice twice and takes the higher of the two rolls.
+                                </div>
+                            </div>
+                        </td>
                     </tr>
 
                     <tr class="d-flex" style="height: 80px;">
-                        <td class="w-50">
+                        <td style="width: 45%;">
                             {{ form.disadvantage.label }}
                         </td>
-                        <td class="w-50">
+                        <td style="width: 40%;">
                             <table class="table text-center table-borderless" style="table-layout: fixed;">
                                 <tr class="d-flex" style="height: 80px;">
                                     {% for subfield in form.disadvantage %}
@@ -42,13 +59,30 @@
                                 </tr>
                             </table>
                         </td>
+                        <td style="width: 20%;">
+                            <p>
+                                <button class="btn btn-light text-center" type="button" data-toggle="collapse"
+                                    data-target="#collapseDisadvantage" aria-expanded="false" aria-controls="collapseDisadvantage">
+                                    ?
+                                </button>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr class="d-flex" style="height: 20px;">
+                        <td>
+                            <div class="collapse" id="collapseDisadvantage">
+                                <div class="card card-body">
+                                    Disadvantage rolls each dice twice and takes the lower of the two rolls.
+                                </div>
+                            </div>
+                        </td>
                     </tr>
 
                     <tr class="d-flex" style="height: 80px;">
-                        <td class="w-50">
+                        <td style="width: 45%;">
                             {{ form.explode.label }}
                         </td>
-                        <td class="w-50">
+                        <td style="width: 40%;">
                             <table class="table text-center table-borderless" style="table-layout: fixed;">
                                 <tr class="d-flex" style="height: 80px;">
                                     {% for subfield in form.explode %}
@@ -61,24 +95,60 @@
                                 </tr>
                             </table>
                         </td>
+                        <td style="width: 20%;">
+                            <p>
+                                <button class="btn btn-light text-center" type="button" data-toggle="collapse"
+                                    data-target="#collapseExplode" aria-expanded="false" aria-controls="collapseExplode">
+                                    ?
+                                </button>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr class="d-flex" style="height: 20px;">
+                        <td>
+                            <div class="collapse" id="collapseExplode">
+                                <div class="card card-body">
+                                    Explode causes the dice to roll again whenever it rolls its maximum value and adds
+                                    the new result to the sum.
+                                </div>
+                            </div>
+                        </td>
                     </tr>
 
                     <tr class="d-flex" style="height: 80px;">
-                        <td class="w-50">
+                        <td style="width: 45%;">
                             {{ form.cheater.label }}
                         </td>
-                        <td class="w-50">
+                        <td style="width: 40%;">
                             <table class="table text-center table-borderless" style="table-layout: fixed;">
                                 <tr class="d-flex" style="height: 80px;">
                                     {% for subfield in form.cheater %}
-                                        <td>
-                                            {{ subfield }}
-                                            <br>
-                                            {{ subfield.label }}
-                                        </td>
+                                    <td>
+                                        {{ subfield }}
+                                        <br>
+                                        {{ subfield.label }}
+                                    </td>
                                     {% endfor %}
                                 </tr>
                             </table>
+                        </td>
+                        <td style="width: 20%;">
+                            <p>
+                                <button class="btn btn-light text-center" type="button" data-toggle="collapse"
+                                    data-target="#collapseCheater" aria-expanded="false"
+                                    aria-controls="collapseCheater">
+                                    ?
+                                </button>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr class="d-flex" style="height: 20px;">
+                        <td>
+                            <div class="collapse" id="collapseCheater">
+                                <div class="card card-body">
+                                    Cheater causes the dice always roll its maximum value.
+                                </div>
+                            </div>
                         </td>
                     </tr>
 
