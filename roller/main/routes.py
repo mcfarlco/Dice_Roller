@@ -183,6 +183,35 @@ def reset():
     blue.blue = 255
     db.session.add(blue)
 
+    # Animations
+    gif_blue = Animation()
+    gif_blue.name = "gifs/blue.gif"
+    db.session.add(gif_blue)
+    gif_funnel = Animation()
+    gif_funnel.name = "gifs/funnel.gif"
+    db.session.add(gif_funnel)
+    gif_green = Animation()
+    gif_green.name = "gifs/green.gif"
+    db.session.add(gif_green)
+    gif_orange = Animation()
+    gif_orange.name = "gifs/orange.gif"
+    db.session.add(gif_orange)
+    gif_purple = Animation()
+    gif_purple.name = "gifs/purple.gif"
+    db.session.add(gif_purple)
+    gif_radar = Animation()
+    gif_radar.name = "gifs/radar.gif"
+    db.session.add(gif_radar)
+    gif_rainbow = Animation()
+    gif_rainbow.name = "gifs/rainbow.gif"
+    db.session.add(gif_rainbow)
+    gif_red = Animation()
+    gif_red.name = "gifs/red.gif"
+    db.session.add(gif_red)
+    gif_yellow = Animation()
+    gif_yellow.name = "gifs/yellow.gif"
+    db.session.add(gif_yellow)
+
     db.session.commit()
 
     # Build profile relationships
