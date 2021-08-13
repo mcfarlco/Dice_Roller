@@ -234,6 +234,12 @@ def create_animations():
 
 def create_default_relationships():
     # Build profile relationships
+    d20 = db.session.query(Rangeprofile).filter(Rangeprofile.id == '1').first()
+    d20_2 = db.session.query(Rangeprofile).filter(Rangeprofile.id == '2').first()
+    d6 = db.session.query(Rangeprofile).filter(Rangeprofile.id == '3').first()
+    flash = db.session.query(Rgbeffect).filter(Rgbeffect.id == '1').first()
+    spin = db.session.query(Rgbeffect).filter(Rgbeffect.id == '2').first()
+    cycle = db.session.query(Rgbeffect).filter(Rgbeffect.id == '3').first()
     t_flash = db.session.query(Rgbeffect).filter(Rgbeffect.id == '1').all()
     t_spin = db.session.query(Rgbeffect).filter(Rgbeffect.id == '2').all()
     t_cycle = db.session.query(Rgbeffect).filter(Rgbeffect.id == '3').all()
